@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - HookTarget
+  - Hand
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - 
   - Hookable
   - PC
-  - 
-  - 
+  - GroundCheck
+  - Hand
   - 
   - 
   - 

@@ -36,7 +36,6 @@ public class Movement : MonoBehaviour
             {
                   isjump = false;
                   isFloating = true;
-               
             }
         }
         else
@@ -44,7 +43,6 @@ public class Movement : MonoBehaviour
             isFloating = false;
 
         }
-
     }
     void FixedUpdate()
     {
@@ -67,8 +65,6 @@ public class Movement : MonoBehaviour
     {
         if (groundcheck)
         {
-
-
             if (horInput != 0)
             {
                 rb.velocity += new Vector2(horInput * speedModifier, 0);
@@ -126,12 +122,15 @@ public class Movement : MonoBehaviour
             groundcheck = true;
             canFloat = false;
             isFloating = false;
-           
         }
         }
         private void OnTriggerExit2D(Collider2D collision)
         {
+         if (collision.CompareTag("Ground"))
+         {
             groundcheck = false;
+         }
+           
         }
         private void OnDrawGizmos()
         {

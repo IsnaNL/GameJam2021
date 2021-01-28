@@ -121,6 +121,90 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &209934795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 209934798}
+  - component: {fileID: 209934797}
+  - component: {fileID: 209934796}
+  - component: {fileID: 209934799}
+  m_Layer: 11
+  m_Name: Hand
+  m_TagString: Hand
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!58 &209934796
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209934795}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.1
+--- !u!50 &209934797
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209934795}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!4 &209934798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209934795}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 310874154}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &209934799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209934795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0956e4498bf214cbb9ba03c015d4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handHit: 0
+  grapple: {fileID: 310874156}
 --- !u!1 &310874150
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +220,7 @@ GameObject:
   - component: {fileID: 310874155}
   - component: {fileID: 310874156}
   m_Layer: 9
-  m_Name: Circle
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,6 +325,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1.4891821, z: 1}
   m_Children:
   - {fileID: 1542614467}
+  - {fileID: 209934798}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,8 +343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   speedModifier: 0.2
-  jumpForce: {x: 0, y: 5}
-  floatingGravityScale: 0.3
+  jumpForce: {x: 0, y: 6}
+  floatingGravityScale: 0.2
 --- !u!114 &310874156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,13 +357,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1308e74b7417d0146999e6369b5561d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canRay: 0
+  handrb: {fileID: 209934797}
+  hand: {fileID: 209934799}
   GrappleHookDistance: 5
-  hookTravelSpeed: 0.1
+  hookTravelSpeed: 0.2
+  hookTravelForce: 7
   movement: {fileID: 310874155}
   mouseClicked: 0
   Hookable:
     serializedVersion: 2
     m_Bits: 256
+  cooldown: 1.5
+  hookTargetLayer: 8
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +465,7 @@ GameObject:
   - component: {fileID: 668140537}
   - component: {fileID: 668140536}
   m_Layer: 8
-  m_Name: Hexagon
+  m_Name: HookableNode
   m_TagString: HookTarget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,7 +669,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1542614467}
   - component: {fileID: 1542614468}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
