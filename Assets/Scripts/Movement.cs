@@ -19,6 +19,7 @@ public class Movement : MonoBehaviour
     float savedGravityScale;
     public float floatingGravityScale;
     public float MaxXMagnitude;
+    public LayerMask groundLayerMask;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,6 +51,7 @@ public class Movement : MonoBehaviour
 
         }
         Flip();
+        
     }
     private void Flip()
     {
@@ -76,6 +78,18 @@ public class Movement : MonoBehaviour
     }
     private void ClampVelocity()
     {
+        if(rb.velocity.y < 0)
+        {
+            animator.SetBool("Falling", true);
+            RaycastHit2D checkForGround = Physics2D.Raycast(transform.position, Vector2.down,1.5f, groundLayerMask);
+            Debug.DrawRay(transform.position, Vector2.down *1.5f);
+            if (checkForGround)
+            {
+                animator.SetBool("Falling", false);
+            }
+          
+        }
+        
         if(rb.velocity.x >= MaxXMagnitude)
         {
             rb.velocity = new Vector2(MaxXMagnitude, rb.velocity.y);
@@ -133,6 +147,7 @@ public class Movement : MonoBehaviour
     {
         if (groundcheck && isjump)
         {
+            animator.SetTrigger("Jump");
             rb.velocity = new Vector2(rb.velocity.x * 0.5f, rb.velocity.y);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
             isjump = false;
@@ -160,8 +175,11 @@ public class Movement : MonoBehaviour
             animator.SetBool("Run", false);
             rb.velocity *= 0.2f;
             rb.gravityScale = savedGravityScale;
-        }
            
+
+
+        }
+
     }
     private void OnTriggerStay2D(Collider2D collision)
         {
