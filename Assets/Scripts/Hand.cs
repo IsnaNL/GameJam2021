@@ -8,6 +8,7 @@ public class Hand : MonoBehaviour
     public bool handHit;
     public GrappleHook grapple;
     Vector2 dir;
+   
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
     {  

@@ -25,8 +25,10 @@ public class GrappleHook : MonoBehaviour
      private List<float> DistancesFromNodes = new List<float>();
      int index;
      public KeyCode HookKey;
+    CreateLine line;
     private void Start()
     {
+        line = GetComponent<CreateLine>();
         StartCoroutine(NodesRoutine());
         handParticals = hand.GetComponent<ParticleSystem>();
     }
@@ -47,15 +49,16 @@ public class GrappleHook : MonoBehaviour
         }
         if (Input.GetKey(HookKey))//getkey
         {
-            mouseClicked = true;  
+            mouseClicked = true;
+          
         }
         else
         {
+            line.line.enabled = false;
             mouseClicked = false;
-             handrb.position = movement.rb.position;
-            
-            
-            
+            handrb.position = Vector2.zero;
+            handParticals.gameObject.SetActive(false);
+           
         }
         if (Input.GetKeyUp(HookKey) && hooked)//getkeydown
         {
@@ -63,6 +66,8 @@ public class GrappleHook : MonoBehaviour
             Reached(dir);
             hooked = false;
         }
+        
+
     }
     private void CheckNodes()
     {
@@ -103,6 +108,7 @@ public class GrappleHook : MonoBehaviour
             {
                 CheckNodes();
             }
+          
         }
     }
     private void Grapple()
@@ -111,8 +117,8 @@ public class GrappleHook : MonoBehaviour
         {
           if (correctTarget)
           {
+                line.line.enabled = true;
                 handParticals.gameObject.SetActive(true);
-
                 handrb.velocity = Vector2.zero;
                 Vector2 HandCheck = Vector2.MoveTowards(hand.transform.position, correctTarget.transform.position, hookTravelSpeed );
                 handrb.MovePosition(HandCheck);
@@ -132,8 +138,7 @@ public class GrappleHook : MonoBehaviour
                     }
                 }
           }
-        }
-       
+        }   
     } 
     void Reached(Vector2 dir)
     {
