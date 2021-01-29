@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
     bool canFloat;
     float savedGravityScale;
     public float floatingGravityScale;
+    public float MaxXMagnitude;
    
     void Start()
     {
@@ -50,6 +51,19 @@ public class Movement : MonoBehaviour
         Jump();
         CeilingCheck();
         Float();
+        ClampVelocity();
+    }
+
+    private void ClampVelocity()
+    {
+        if(rb.velocity.x >= MaxXMagnitude)
+        {
+            rb.velocity = new Vector2(MaxXMagnitude, rb.velocity.y);
+        }else if(rb.velocity.x <= -MaxXMagnitude)
+        {
+            rb.velocity = new Vector2(-MaxXMagnitude, rb.velocity.y);
+        }
+     
     }
 
     private void CeilingCheck()
