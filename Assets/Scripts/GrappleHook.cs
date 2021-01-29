@@ -24,6 +24,7 @@ public class GrappleHook : MonoBehaviour
      ParticleSystem handParticals;
      private List<float> DistancesFromNodes = new List<float>();
      int index;
+    public Transform searchPoint;
      public KeyCode HookKey;
 
     private void Start()
@@ -76,7 +77,7 @@ public class GrappleHook : MonoBehaviour
     {
         ShortestDistance = 0;
         DistancesFromNodes.Clear();
-        hookTargets = Physics2D.OverlapCircleAll(transform.position, GrappleHookDistance, Hookable);
+        hookTargets = Physics2D.OverlapCircleAll(searchPoint.position, GrappleHookDistance, Hookable);
         foreach (Collider2D HT in hookTargets)
         {
             DistancesFromNodes.Add(new Vector2(HT.transform.position.x - transform.position.x, HT.transform.position.y - transform.position.y).magnitude);
@@ -122,7 +123,7 @@ public class GrappleHook : MonoBehaviour
           {
                // line.line.enabled = true;
                 handParticals.gameObject.SetActive(true);
-                movement.rb.velocity *= 0.99f;
+                movement.rb.velocity *= 0.8f;
                 handrb.velocity = Vector2.zero;
                 Vector2 HandCheck = Vector2.MoveTowards(hand.transform.position, correctTarget.transform.position, hookTravelSpeed );
                 handrb.MovePosition(HandCheck);
