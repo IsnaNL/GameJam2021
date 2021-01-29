@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
         {
             if (horInput != 0)
             {
-                rb.velocity += new Vector2(horInput * speedModifier * 0.6f, 0);
+                rb.velocity += new Vector2(horInput * speedModifier * 0.3f, 0);
             }
         }
     }
@@ -108,6 +108,7 @@ public class Movement : MonoBehaviour
     {
         if (groundcheck && isjump)
         {
+            rb.velocity = new Vector2(rb.velocity.x * 0.5f, rb.velocity.y);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
             isjump = false;
         }

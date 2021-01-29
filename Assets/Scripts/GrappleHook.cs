@@ -146,7 +146,7 @@ public class GrappleHook : MonoBehaviour
     {
         GrappleReadyFromCooldown = false;
         runningCooldown = 0;
-        movement.rb.AddForce(dir * hookTravelForce, ForceMode2D.Impulse);
+        movement.rb.velocity = new Vector2(dir.x * hookTravelForce,dir.y * hookTravelForce);
         hooked = false;
         
     }
