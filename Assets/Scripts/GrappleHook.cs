@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GrappleHook : MonoBehaviour
 {
-
      float ShortestDistance = 0;
      bool hooked;
      public bool canRay;
@@ -22,11 +21,10 @@ public class GrappleHook : MonoBehaviour
      public int hookTargetLayer;
      Collider2D[] hookTargets;
      public Collider2D correctTarget;
-    ParticleSystem handParticals;
+     ParticleSystem handParticals;
      private List<float> DistancesFromNodes = new List<float>();
      int index;
-    public KeyCode HookKey;
-
+     public KeyCode HookKey;
     private void Start()
     {
         StartCoroutine(NodesRoutine());
@@ -34,7 +32,6 @@ public class GrappleHook : MonoBehaviour
     }
     private void Update()
     {
-
         if (runningCooldown <= cooldown)
         {
             canRay = false;
@@ -50,12 +47,15 @@ public class GrappleHook : MonoBehaviour
         }
         if (Input.GetKey(HookKey))//getkey
         {
-            mouseClicked = true;
-            
+            mouseClicked = true;  
         }
         else
         {
-            mouseClicked = false;           
+            mouseClicked = false;
+             handrb.position = movement.rb.position;
+            
+            
+            
         }
         if (Input.GetKeyUp(HookKey) && hooked)//getkeydown
         {
@@ -63,9 +63,7 @@ public class GrappleHook : MonoBehaviour
             Reached(dir);
             hooked = false;
         }
-      
     }
-
     private void CheckNodes()
     {
         ShortestDistance = 0;
@@ -92,11 +90,9 @@ public class GrappleHook : MonoBehaviour
             correctTarget = null;
         }
     }
-
     private void FixedUpdate()
     {
         Grapple();
-      
     }
     IEnumerator NodesRoutine()
     {
@@ -113,10 +109,8 @@ public class GrappleHook : MonoBehaviour
     {
         if (mouseClicked && canRay)
         {
-
-
-            if (correctTarget)
-            {
+          if (correctTarget)
+          {
                 handParticals.gameObject.SetActive(true);
 
                 handrb.velocity = Vector2.zero;
@@ -125,7 +119,6 @@ public class GrappleHook : MonoBehaviour
                 float curLength = new Vector2(HandCheck.x - handrb.position.x, HandCheck.y - handrb.position.y).magnitude;
                 if (curLength < 0.004f)
                 {
-                    
                     movement.rb.velocity = Vector2.zero;
                     hooked = true;
                     Vector2 Target = Vector2.MoveTowards(transform.position, correctTarget.transform.position, hookTravelSpeed);
@@ -137,17 +130,11 @@ public class GrappleHook : MonoBehaviour
                         canRay = false;
                         Reached(hand.CalcDir());
                     }
-                 
                 }
-            }
+          }
         }
-        else
-        {
-            handrb.position = movement.rb.position;
-        }
-    }
-  
-   
+       
+    } 
     void Reached(Vector2 dir)
     {
         GrappleReadyFromCooldown = false;
@@ -161,6 +148,5 @@ public class GrappleHook : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, GrappleHookDistance);
-        
     }
 }

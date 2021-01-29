@@ -19,13 +19,11 @@ public class Movement : MonoBehaviour
     float savedGravityScale;
     public float floatingGravityScale;
     public float MaxXMagnitude;
-   
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponentInChildren<SpriteRenderer>();
         animator = GetComponentInChildren<Animator>();
-
         savedGravityScale =  rb.gravityScale;
     }
     void Update()
@@ -53,7 +51,6 @@ public class Movement : MonoBehaviour
         }
         Flip();
     }
-
     private void Flip()
     {
        if(horInput > 0)
@@ -69,7 +66,6 @@ public class Movement : MonoBehaviour
        }
       
     }
-
     void FixedUpdate()
     {
         HorMovement();
@@ -78,7 +74,6 @@ public class Movement : MonoBehaviour
         Float();
         ClampVelocity();
     }
-
     private void ClampVelocity()
     {
         if(rb.velocity.x >= MaxXMagnitude)
@@ -90,7 +85,6 @@ public class Movement : MonoBehaviour
         }
      
     }
-
     private void CeilingCheck()
     {
         RaycastHit2D ceilingCheck = Physics2D.Raycast(transform.position, Vector2.up);
@@ -99,7 +93,6 @@ public class Movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, 0);
         }
     }
-
     private void HorMovement()
     {
         if (groundcheck)
@@ -192,5 +185,4 @@ public class Movement : MonoBehaviour
         {
             Gizmos.DrawRay(transform.position, Vector2.up);
         }
-    
 }
