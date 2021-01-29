@@ -158,6 +158,6 @@ public class GrappleHook : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, GrappleHookDistance);
+        Gizmos.DrawWireSphere(searchPoint.position, GrappleHookDistance);
     }
 }

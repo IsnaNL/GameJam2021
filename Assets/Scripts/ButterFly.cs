@@ -8,8 +8,14 @@ public class ButterFly : MonoBehaviour
     public LayerMask playerLayerMask;
     public ParticleSystem Idle;
     public ParticleSystem Reached;
-    void FixedUpdate()
+    private Dialog dialogManager;
+    public int sentenceIndex;
+    private void Start()
     {
+        dialogManager = FindObjectOfType<Dialog>();
+    }
+    void FixedUpdate()
+    {   
         CheckForPlayer();
     }
     private void CheckForPlayer()
@@ -32,6 +38,7 @@ public class ButterFly : MonoBehaviour
     {
         Reached.gameObject.SetActive(true);
         yield return new WaitForSeconds(2.1f);
+        dialogManager.StartCoroutine(dialogManager.Type(sentenceIndex));
         Reached.gameObject.SetActive(false);
         Destroy(this.gameObject);
     }
