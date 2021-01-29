@@ -25,10 +25,10 @@ public class GrappleHook : MonoBehaviour
      private List<float> DistancesFromNodes = new List<float>();
      int index;
      public KeyCode HookKey;
-    CreateLine line;
+
     private void Start()
     {
-        line = GetComponent<CreateLine>();
+     
         StartCoroutine(NodesRoutine());
         handParticals = hand.GetComponent<ParticleSystem>();
     }
@@ -47,6 +47,12 @@ public class GrappleHook : MonoBehaviour
         {
             canRay = true;
         }
+        if (Input.GetKeyUp(HookKey) && hooked)//getkeydown
+        {
+            Vector2 dir = new Vector2(correctTarget.transform.position.x - transform.position.x, correctTarget.transform.position.y - transform.position.y).normalized;
+            Reached(dir);
+            hooked = false;
+        }
         if (Input.GetKey(HookKey))//getkey
         {
             mouseClicked = true;
@@ -54,19 +60,16 @@ public class GrappleHook : MonoBehaviour
         }
         else
         {
-            line.line.enabled = false;
+            // line.line.enabled = false;
+            // handrb.position = Vector2.zero;
+            //hand.transform.position = Vector2.zero;
+            hand.gameObject.transform.position = transform.position;
             mouseClicked = false;
-            handrb.position = Vector2.zero;
             handParticals.gameObject.SetActive(false);
            
         }
-        if (Input.GetKeyUp(HookKey) && hooked)//getkeydown
-        {
-            Vector2 dir = new Vector2(correctTarget.transform.position.x - transform.position.x, correctTarget.transform.position.y - transform.position.y).normalized;
-            Reached(dir);
-            hooked = false;
-        }
-        
+       
+
 
     }
     private void CheckNodes()
@@ -117,15 +120,16 @@ public class GrappleHook : MonoBehaviour
         {
           if (correctTarget)
           {
-                line.line.enabled = true;
+               // line.line.enabled = true;
                 handParticals.gameObject.SetActive(true);
+                movement.rb.velocity *= 0.7f;
                 handrb.velocity = Vector2.zero;
                 Vector2 HandCheck = Vector2.MoveTowards(hand.transform.position, correctTarget.transform.position, hookTravelSpeed );
                 handrb.MovePosition(HandCheck);
                 float curLength = new Vector2(HandCheck.x - handrb.position.x, HandCheck.y - handrb.position.y).magnitude;
                 if (curLength < 0.004f)
                 {
-                    movement.rb.velocity = Vector2.zero;
+                   // movement.rb.velocity = Vector2.zero;
                     hooked = true;
                     Vector2 Target = Vector2.MoveTowards(transform.position, correctTarget.transform.position, hookTravelSpeed);
                     movement.rb.MovePosition(Target);
@@ -148,6 +152,7 @@ public class GrappleHook : MonoBehaviour
         movement.canFloat = true;
         handParticals.gameObject.SetActive(false);
         hooked = false;
+      
     }
     private void OnDrawGizmos()
     {

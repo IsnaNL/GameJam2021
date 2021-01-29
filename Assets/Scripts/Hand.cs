@@ -14,6 +14,7 @@ public class Hand : MonoBehaviour
     {  
         handHit = true;
         dir = new Vector2(transform.position.x - grapple.transform.position.x, transform.position.y - grapple.transform.position.y).normalized;
+       // gameObject.GetComponent<Rigidbody2D>().position = gameObject.GetComponentInParent<Rigidbody2D>().position;
 
     }
 
