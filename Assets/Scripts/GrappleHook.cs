@@ -22,6 +22,7 @@ public class GrappleHook : MonoBehaviour
      public int hookTargetLayer;
      Collider2D[] hookTargets;
      public Collider2D correctTarget;
+    ParticleSystem handParticals;
      private List<float> DistancesFromNodes = new List<float>();
      int index;
     public KeyCode HookKey;
@@ -29,7 +30,7 @@ public class GrappleHook : MonoBehaviour
     private void Start()
     {
         StartCoroutine(NodesRoutine());
-       
+        handParticals = hand.GetComponent<ParticleSystem>();
     }
     private void Update()
     {
@@ -50,6 +51,7 @@ public class GrappleHook : MonoBehaviour
         if (Input.GetKey(HookKey))//getkey
         {
             mouseClicked = true;
+            
         }
         else
         {
@@ -111,10 +113,12 @@ public class GrappleHook : MonoBehaviour
     {
         if (mouseClicked && canRay)
         {
-          
-          
+
+
             if (correctTarget)
-            {            
+            {
+                handParticals.gameObject.SetActive(true);
+
                 handrb.velocity = Vector2.zero;
                 Vector2 HandCheck = Vector2.MoveTowards(hand.transform.position, correctTarget.transform.position, hookTravelSpeed );
                 handrb.MovePosition(HandCheck);
@@ -150,8 +154,8 @@ public class GrappleHook : MonoBehaviour
         runningCooldown = 0;
         movement.rb.velocity = new Vector2(dir.x * hookTravelForce,dir.y * hookTravelForce);
         movement.canFloat = true;
+        handParticals.gameObject.SetActive(false);
         hooked = false;
-        
     }
     private void OnDrawGizmos()
     {
