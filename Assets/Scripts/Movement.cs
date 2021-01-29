@@ -32,18 +32,16 @@ public class Movement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space)) {
             isjump = true;
-            animator.SetTrigger("Jump");
         }
         if (Input.GetKeyUp(KeyCode.Space) && !groundcheck)
         {
             canFloat = true;
-
         }
         if (Input.GetKey(KeyCode.Space) && canFloat) {
             if(rb.velocity.y <= 0)
             {
-                  isjump = false;
-                  isFloating = true;
+                 isjump = false;
+                 isFloating = true;
                 animator.SetBool("Float", true);
             }
         }
@@ -52,14 +50,14 @@ public class Movement : MonoBehaviour
             isFloating = false;
             animator.SetBool("Float", false);
         }
-        Flip();
-        
+        Flip(); 
     }
     private void Flip()
     {
        if(horInput > 0)
        {
             
+
             isLookingRight = true;
             sr.flipX = !isLookingRight;
        }
@@ -68,7 +66,6 @@ public class Movement : MonoBehaviour
             isLookingRight = false;
             sr.flipX = !isLookingRight;
        }
-      
     }
     void FixedUpdate()
     {
@@ -83,15 +80,15 @@ public class Movement : MonoBehaviour
         if(rb.velocity.y < 0 && !isFloating)
         {
             animator.SetBool("Falling", true);
+            animator.SetBool("Jump", false);
             RaycastHit2D checkForGround = Physics2D.Raycast(transform.position, Vector2.down,1.5f, groundLayerMask);
             Debug.DrawRay(transform.position, Vector2.down *1.5f);
             if (checkForGround )
             {
                 animator.SetBool("Falling", false);
+               
             }
-          
         }
-        
         if(rb.velocity.x >= MaxXMagnitude)
         {
             rb.velocity = new Vector2(MaxXMagnitude, rb.velocity.y);
@@ -99,7 +96,6 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = new Vector2(-MaxXMagnitude, rb.velocity.y);
         }
-     
     }
     private void CeilingCheck()
     {
@@ -119,7 +115,6 @@ public class Movement : MonoBehaviour
                 if(rb.velocity.x >= 5 || rb.velocity.x <= -5)
                 {
                     animator.SetBool("Run", true);
-
                 }
             }
             else
@@ -138,10 +133,12 @@ public class Movement : MonoBehaviour
         }
         else
         {
+            animator.SetBool("Run", false);
+            animator.SetBool("Falling", true);
             if (horInput != 0)
             {
                 rb.velocity += new Vector2(horInput * speedModifier * 0.3f, 0);
-                animator.SetBool("Run", true);
+                //animator.SetBool("Run", true);
             }
         }
     }
@@ -149,7 +146,7 @@ public class Movement : MonoBehaviour
     {
         if (groundcheck && isjump)
         {
-           
+            animator.SetBool("Jump", true);
             rb.velocity = new Vector2(rb.velocity.x * 0.5f, rb.velocity.y);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
             isjump = false;
@@ -176,10 +173,7 @@ public class Movement : MonoBehaviour
             groundcheck = true;
             animator.SetBool("Run", false);
             rb.velocity *= 0.2f;
-            rb.gravityScale = savedGravityScale;
-           
-
-
+            rb.gravityScale = savedGravityScale; 
         }
 
     }
@@ -199,8 +193,7 @@ public class Movement : MonoBehaviour
          if (collision.CompareTag("Ground"))
          {
             groundcheck = false;
-         }
-           
+         } 
         }
         private void OnDrawGizmos()
         {
