@@ -106,7 +106,7 @@ public class GrappleHook : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.06f);
+            yield return new WaitForSeconds(0.05f);
             if (!hooked)
             {
                 CheckNodes();
@@ -122,7 +122,7 @@ public class GrappleHook : MonoBehaviour
           {
                // line.line.enabled = true;
                 handParticals.gameObject.SetActive(true);
-                movement.rb.velocity *= 0.7f;
+                movement.rb.velocity *= 0.99f;
                 handrb.velocity = Vector2.zero;
                 Vector2 HandCheck = Vector2.MoveTowards(hand.transform.position, correctTarget.transform.position, hookTravelSpeed );
                 handrb.MovePosition(HandCheck);
