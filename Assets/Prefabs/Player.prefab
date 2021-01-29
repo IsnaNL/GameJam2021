@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4963282370155461464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.59, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8732290331577775604}
@@ -5140,6 +5140,9 @@ MonoBehaviour:
   canFloat: 0
   floatingGravityScale: 0.2
   MaxXMagnitude: 8.5
+  groundLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!114 &8732290331577775602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5166,6 +5169,7 @@ MonoBehaviour:
   cooldown: 1.2
   hookTargetLayer: 8
   correctTarget: {fileID: 0}
+  searchPoint: {fileID: 651821663542478868}
   HookKey: 304
 --- !u!114 &310874157
 MonoBehaviour:

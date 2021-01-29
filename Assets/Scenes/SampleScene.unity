@@ -17077,57 +17077,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1856531276
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1856531277}
-  - component: {fileID: 1856531278}
-  m_Layer: 0
-  m_Name: Dialog Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1856531277
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856531276}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 697.03314, y: 805.23584, z: -100.71253}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 38
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1856531278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1856531276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf74e74cf36a8e24f84e8f79a5c7a1a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textDisplay: {fileID: 585299579}
-  sentences:
-  - Some people believe that following a butterfly will help resolve their inner
-    conflicts
-  - "I don\u2019t believe in some kind of cosmic interference.. Things happen because
-    they happen"
-  - I feel stuck, lost, as the rest of the world continues on like nothing has changed
-  TypingSpeed: 0.02
 --- !u!1 &1878365490
 GameObject:
   m_ObjectHideFlags: 0
@@ -22269,12 +22218,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &2026530803 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 651821663542478868, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8732290331351115230}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2042221756
 GameObject:
   m_ObjectHideFlags: 0
@@ -22960,21 +22903,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 651821663542478868, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 651821663542478868, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.59
-      objectReference: {fileID: 0}
-    - target: {fileID: 8732290331577775602, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
-        type: 3}
-      propertyPath: searchPoint
-      value: 
-      objectReference: {fileID: 2026530803}
     - target: {fileID: 8732290331577775604, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23030,11 +22958,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8732290331577775605, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
-        type: 3}
-      propertyPath: groundLayerMask.m_Bits
-      value: 8192
-      objectReference: {fileID: 0}
     - target: {fileID: 8732290331577775608, guid: 3e26a8bae71ed584cb7414d0e4d2c24b,
         type: 3}
       propertyPath: m_Name
@@ -23042,3 +22965,77 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e26a8bae71ed584cb7414d0e4d2c24b, type: 3}
+--- !u!1001 &8930120046772838185
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 697.03314
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 805.23584
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -100.71253
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644964, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644965, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: m_Name
+      value: Dialog Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8930120045268644967, guid: 0384dba95b7277d48a2191267e4c269b,
+        type: 3}
+      propertyPath: textDisplay
+      value: 
+      objectReference: {fileID: 585299579}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0384dba95b7277d48a2191267e4c269b, type: 3}
