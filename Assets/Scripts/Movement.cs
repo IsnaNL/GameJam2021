@@ -113,11 +113,11 @@ public class Movement : MonoBehaviour
             }
             if (rb.velocity.x > 0 && horInput < 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y);
             }
             else if (rb.velocity.x < 0 && horInput > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x * 0.8f, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x * 0.85f, rb.velocity.y);
             }
         }
         else
