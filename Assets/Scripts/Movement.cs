@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,12 @@ public class Movement : MonoBehaviour
     bool groundcheck;
     public float speedModifier;
     public Vector2 jumpForce;
+    SpriteRenderer sr;
+    Animator animator;
     bool isjump;
     bool isFloating;
-    bool canFloat;
+    public bool canFloat;
+    bool isLookingRight;
     float savedGravityScale;
     public float floatingGravityScale;
     public float MaxXMagnitude;
@@ -19,6 +23,9 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        animator = GetComponentInChildren<Animator>();
+
         savedGravityScale =  rb.gravityScale;
     }
     void Update()
@@ -44,7 +51,25 @@ public class Movement : MonoBehaviour
             isFloating = false;
 
         }
+        Flip();
     }
+
+    private void Flip()
+    {
+       if(horInput > 0)
+       {
+            
+            isLookingRight = true;
+            sr.flipX = !isLookingRight;
+       }
+       else if (horInput < 0)
+       {
+            isLookingRight = false;
+            sr.flipX = !isLookingRight;
+       }
+      
+    }
+
     void FixedUpdate()
     {
         HorMovement();
@@ -82,10 +107,16 @@ public class Movement : MonoBehaviour
             if (horInput != 0)
             {
                 rb.velocity += new Vector2(horInput * speedModifier, 0);
+                if(rb.velocity.x >= 5 || rb.velocity.x <= -5)
+                {
+                    animator.SetBool("Run", true);
+
+                }
             }
             else
             {
                 rb.velocity = new Vector2(rb.velocity.x * 0.9f, rb.velocity.y);
+                animator.SetBool("Run", false);
             }
             if (rb.velocity.x > 0 && horInput < 0)
             {
@@ -101,6 +132,7 @@ public class Movement : MonoBehaviour
             if (horInput != 0)
             {
                 rb.velocity += new Vector2(horInput * speedModifier * 0.3f, 0);
+                animator.SetBool("Run", true);
             }
         }
     }
@@ -127,13 +159,22 @@ public class Movement : MonoBehaviour
             }
         }
     }
-        
-        private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground"))
+        {
+            groundcheck = true;
+            animator.SetBool("Run", false);
+            rb.velocity *= 0.2f;
+            rb.gravityScale = savedGravityScale;
+        }
+           
+    }
+    private void OnTriggerStay2D(Collider2D collision)
         {
 
         if (collision.CompareTag("Ground"))
-        {
-            rb.gravityScale = savedGravityScale;
+        {    
             groundcheck = true;
             canFloat = false;
             isFloating = false;

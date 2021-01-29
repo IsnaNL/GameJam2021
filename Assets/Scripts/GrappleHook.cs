@@ -22,12 +22,14 @@ public class GrappleHook : MonoBehaviour
      public int hookTargetLayer;
      Collider2D[] hookTargets;
      public Collider2D correctTarget;
-    private List<float> DistancesFromNodes = new List<float>();
-    int index;
+     private List<float> DistancesFromNodes = new List<float>();
+     int index;
+    public KeyCode HookKey;
 
     private void Start()
     {
         StartCoroutine(NodesRoutine());
+       
     }
     private void Update()
     {
@@ -45,7 +47,7 @@ public class GrappleHook : MonoBehaviour
         {
             canRay = true;
         }
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(HookKey))//getkey
         {
             mouseClicked = true;
         }
@@ -53,7 +55,7 @@ public class GrappleHook : MonoBehaviour
         {
             mouseClicked = false;           
         }
-        if (Input.GetKeyUp(KeyCode.Mouse0) && hooked)
+        if (Input.GetKeyUp(HookKey) && hooked)//getkeydown
         {
             Vector2 dir = new Vector2(correctTarget.transform.position.x - transform.position.x, correctTarget.transform.position.y - transform.position.y).normalized;
             Reached(dir);
@@ -147,6 +149,7 @@ public class GrappleHook : MonoBehaviour
         GrappleReadyFromCooldown = false;
         runningCooldown = 0;
         movement.rb.velocity = new Vector2(dir.x * hookTravelForce,dir.y * hookTravelForce);
+        movement.canFloat = true;
         hooked = false;
         
     }
