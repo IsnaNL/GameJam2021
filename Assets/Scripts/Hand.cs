@@ -10,12 +10,10 @@ public class Hand : MonoBehaviour
     Vector2 dir;
     // Start is called before the first frame update
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-       
+    {  
         handHit = true;
         dir = new Vector2(transform.position.x - grapple.transform.position.x, transform.position.y - grapple.transform.position.y).normalized;
 
-      
     }
 
     public Vector2 CalcDir()
