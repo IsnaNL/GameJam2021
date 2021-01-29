@@ -32,23 +32,25 @@ public class Movement : MonoBehaviour
         horInput = Input.GetAxisRaw("Horizontal");
         if (Input.GetKeyDown(KeyCode.Space)) {
             isjump = true;
-
+            animator.SetTrigger("Jump");
         }
         if (Input.GetKeyUp(KeyCode.Space) && !groundcheck)
         {
             canFloat = true;
+
         }
         if (Input.GetKey(KeyCode.Space) && canFloat) {
             if(rb.velocity.y <= 0)
             {
                   isjump = false;
                   isFloating = true;
+                animator.SetBool("Float", true);
             }
         }
         else
         {
             isFloating = false;
-
+            animator.SetBool("Float", false);
         }
         Flip();
         
@@ -78,12 +80,12 @@ public class Movement : MonoBehaviour
     }
     private void ClampVelocity()
     {
-        if(rb.velocity.y < 0)
+        if(rb.velocity.y < 0 && !isFloating)
         {
             animator.SetBool("Falling", true);
             RaycastHit2D checkForGround = Physics2D.Raycast(transform.position, Vector2.down,1.5f, groundLayerMask);
             Debug.DrawRay(transform.position, Vector2.down *1.5f);
-            if (checkForGround)
+            if (checkForGround )
             {
                 animator.SetBool("Falling", false);
             }
@@ -147,7 +149,7 @@ public class Movement : MonoBehaviour
     {
         if (groundcheck && isjump)
         {
-            animator.SetTrigger("Jump");
+           
             rb.velocity = new Vector2(rb.velocity.x * 0.5f, rb.velocity.y);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
             isjump = false;
@@ -189,6 +191,7 @@ public class Movement : MonoBehaviour
             groundcheck = true;
             canFloat = false;
             isFloating = false;
+            animator.SetBool("Falling", false);
         }
         }
         private void OnTriggerExit2D(Collider2D collision)
