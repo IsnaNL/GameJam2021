@@ -165,6 +165,8 @@ public class GrappleHook : MonoBehaviour
         movement.canFloat = true;
         handAnimator.SetBool("HandReached", false);
         handParticals.gameObject.SetActive(false);
+        playThrowSound = false;
+        playReachSound = false;
         hooked = false;
       
     }

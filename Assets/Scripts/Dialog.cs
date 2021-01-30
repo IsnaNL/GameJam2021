@@ -17,7 +17,6 @@ public class Dialog : MonoBehaviour
    
     public IEnumerator Type()
     {
-        yield return new WaitForSeconds(0.2f);
         textDisplay.text = null;
         UIimage.enabled = true;
         switch (index)
@@ -34,6 +33,7 @@ public class Dialog : MonoBehaviour
         }
         foreach (char letter in sentences[index].ToCharArray())
         {
+            UIimage.enabled = true;
             textDisplay.text += letter;
             yield return new WaitForSeconds(TypingSpeed);
             //
