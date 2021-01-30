@@ -6,6 +6,7 @@ public class Node : MonoBehaviour
 {
      GrappleHook gH;
     SpriteRenderer sr;
+    public ParticleSystem particlesystem;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +21,17 @@ public class Node : MonoBehaviour
         {
             if (gH.correctTarget.transform == this.transform )
             {
-                sr.color = new Color(128, 0, 128);
+                particlesystem.gameObject.SetActive(true);
             }
             else
             {
-                sr.color = Color.white;
+                particlesystem.gameObject.SetActive(false);
             }
            
         }
         else
         {
-            sr.color = Color.white;
-
+            particlesystem.gameObject.SetActive(false);
         }
-
     }
 }
