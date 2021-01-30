@@ -20,6 +20,8 @@ public class Movement : MonoBehaviour
     public float floatingGravityScale;
     public float MaxXMagnitude;
     public LayerMask groundLayerMask;
+
+    public ParticleSystem dust;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -147,6 +149,7 @@ public class Movement : MonoBehaviour
         if (groundcheck && isjump)
         {
             animator.SetBool("Jump", true);
+            CreateDust();
             rb.velocity = new Vector2(rb.velocity.x * 0.5f, rb.velocity.y);
             rb.AddForce(jumpForce, ForceMode2D.Impulse);
             isjump = false;
@@ -177,6 +180,12 @@ public class Movement : MonoBehaviour
         }
 
     }
+
+    public void CreateDust()
+    {
+        dust.Play();
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
         {
 
