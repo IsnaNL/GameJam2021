@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MainMenuHandler : MonoBehaviour
 {
     public Button firstButt;
     public Button backToMenuButt;
