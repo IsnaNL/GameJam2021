@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
     public Button backToMenuButt;
     public GameObject CreditsMenu;
     public GameObject Main;
-    private bool isFlapp;
     // Start is called before the first frame update
     void Start()
     {
