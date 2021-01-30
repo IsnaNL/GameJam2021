@@ -22,16 +22,19 @@ public class Node : MonoBehaviour
             if (gH.correctTarget.transform == this.transform )
             {
                 particlesystem.gameObject.SetActive(true);
+                sr.color = new Color(1, 1, 1, 1f);
             }
             else
             {
                 particlesystem.gameObject.SetActive(false);
+                sr.color = new Color(1, 1, 1, 0.8f);
             }
            
         }
         else
         {
             particlesystem.gameObject.SetActive(false);
+            sr.color = new Color(1, 1, 1, 0.8f);
         }
     }
 }

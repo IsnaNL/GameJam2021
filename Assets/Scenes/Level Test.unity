@@ -36104,12 +36104,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!198 &1304631436 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8318331163511961998}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1318377038
 GameObject:
   m_ObjectHideFlags: 0
@@ -71018,136 +71012,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 487545267}
     m_Modifications:
-    - target: {fileID: 782416191334616291, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4853951242600627826, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4853951242600627826, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4853951242600627826, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488422794139662045, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488422794139662045, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1573576157
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488422794139662045, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488422794139662045, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 64254d465f3d76a4d8d3740a6bf24ba6, type: 2}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0.98466206
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startColor.minColor.r
-      value: 0.71898663
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startColor.minColor.g
-      value: 0.4764151
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startColor.minColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.maxNumParticles
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.randomPositionAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.type
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.radius.value
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.arc.mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5836952202125181971, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: ShapeModule.sphericalDirectionAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8318331162936359540, guid: b50909ea60eb4cc46a6c19954389ce5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -71203,11 +71067,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8318331162936359541, guid: b50909ea60eb4cc46a6c19954389ce5c,
-        type: 3}
-      propertyPath: particlesystem
-      value: 
-      objectReference: {fileID: 1304631436}
     - target: {fileID: 8318331162936359545, guid: b50909ea60eb4cc46a6c19954389ce5c,
         type: 3}
       propertyPath: m_Name
