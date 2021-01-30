@@ -14,7 +14,7 @@ public class Dialog : MonoBehaviour
     private int index;
     public AudioClip[] hahaClips;
     public AudioSource audioSourceHAHA;
-   
+
     public IEnumerator Type()
     {
         textDisplay.text = null;
