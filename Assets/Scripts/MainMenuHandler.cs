@@ -14,7 +14,7 @@ public class MainMenuHandler : MonoBehaviour
     void Start()
     {
         
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         BackToMain();
     }
     public void Play()
