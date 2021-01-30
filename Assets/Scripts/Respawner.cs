@@ -7,6 +7,7 @@ public class Respawner : MonoBehaviour
     public Transform curSpawnPoint;
     bool movePlayer;
     Collision2D player;
+    public AudioSource audiosource;
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -14,6 +15,7 @@ public class Respawner : MonoBehaviour
         {
             movePlayer = true;
             player = collision;
+            audiosource.Play();
         }
     }
     void MovePlayer()

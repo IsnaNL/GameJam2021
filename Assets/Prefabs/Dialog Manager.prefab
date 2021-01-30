@@ -43,11 +43,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf74e74cf36a8e24f84e8f79a5c7a1a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIimage: {fileID: 0}
   textDisplay: {fileID: 0}
   sentences:
-  - Some people believe that following a butterfly will help resolve their inner
-    conflicts
-  - "I don\u2019t believe in some kind of cosmic interference.. Things happen because
-    they happen"
-  - I feel stuck, lost, as the rest of the world continues on like nothing has changed
-  TypingSpeed: 0.02
+  - "Hello Hello ? HELLO !! What am I I think therefore i am But why here I can\u2019t
+    remember this place"
+  - "It\u2019s so high Don\u2019t look down Freedom is a state of mind"
+  - "i can hear them laughing How do i make it stop It\u2019s not my fault "
+  - 'I knew the answer, butterflies they taste with their feet They can also see
+    in ultraviolet  last year I squashed 120.5 bugs In the name of science One barely
+    got away I wonder what it feels like to be crushed for just being there '
+  - "I can hear them joking I thought they were my friends I didn\u2019t choose to
+    be like that Where am i?"
+  - I can see the fingers All pointing at me My face my feet are all their problems
+    I just want to belong
+  - "If i avoid all conflict I\u2019ll need to play pretend Posing as someone else
+    entirely Someone with a  beginning and an end "
+  - "I know im different, just don\u2019t know why I can do better, or at least try
+    Weight lifts off then you can fly Hold On Pain Ends"
+  - "I guess I never liked myself Just because of the way others looked at me I feel
+    the wind blowing softly It whispers \u201Cfly\u201D with glee"
+  - Everything must come to an end I think I remember now I was so scared, looking
+    up halfway down
+  - I no longer hear the chatter I no longer feel fright Wonder if they noticed Wonder
+    if they cried
+  - "Dust \u2018til Gone My name is Ash I died at 15 years old I loved science I
+    loved exploring the world and how it works I loved knowing the answers I still
+    do."
+  TypingSpeed: 0.05
+  hahaClips:
+  - {fileID: 8300000, guid: ee4631258c13f9d4c98075d74f7cfda2, type: 3}
+  - {fileID: 8300000, guid: 7c443f930e8fcbf45bdcabdb745484a2, type: 3}
+  - {fileID: 8300000, guid: c91d242bfaa54a54a9255dfd1ad77019, type: 3}
+  audioSourceHAHA: {fileID: 0}

@@ -6,11 +6,12 @@ public class ButterFly : MonoBehaviour
 {
     public float rangeForFly;
     public LayerMask playerLayerMask;
-   // public ParticleSystem Idle;
-   // public ParticleSystem Reached;
+    public AudioClip[] butterflyClips;
+    private AudioSource audioSource;
     private Dialog dialogManager;
     public int sentenceIndex;
     bool islookingRight;
+    bool reached;
     Vector2 startPos;
     Vector2 vLastPos = Vector3.zero;
     public float rangeForIdleFly;
@@ -28,6 +29,8 @@ public class ButterFly : MonoBehaviour
         dialogManager = FindObjectOfType<Dialog>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        //audioSource.Play();
         startPos = transform.position;
         positionsX[0] = transform.position.x - rangeForIdleFly;
         positionsX[1] = transform.position.x + rangeForIdleFly;
@@ -51,8 +54,7 @@ public class ButterFly : MonoBehaviour
             float CurLengthMag = CurLength.magnitude;
             if (CurLengthMag < 0.004)
             {
-               // Idle.Stop();
-               // Reached.transform.position = player.transform.position;
+                
                 StartCoroutine(ReachRoutine());
             }
         }
@@ -61,13 +63,13 @@ public class ButterFly : MonoBehaviour
             if(transform.position.x <= positionsX[0])
             {
                 islookingRight = !islookingRight;
-                animator.SetTrigger("Turn");
+               // animator.SetTrigger("Turn");
                 sr.flipX = true;
             }
             if(transform.position.x >= positionsX[1])
             {
                 islookingRight = !islookingRight;
-                animator.SetTrigger("Turn");
+              //  animator.SetTrigger("Turn");
                 sr.flipX = true;
             }
             if (transform.position.y <= positionsY[0])
@@ -94,26 +96,23 @@ public class ButterFly : MonoBehaviour
             {
                 transform.position += new Vector3(0, -moveSpeed) * Time.fixedDeltaTime;
             }
-            /*vLastPos = transform.position;
-
-            fTime += Time.deltaTime * curveSpeed;
-
-            Vector3 vSin = new Vector3(Mathf.Sin(fTime), -Mathf.Sin(fTime), 0);
-            Vector3 vLin = transform.position.x > PointForFlying[1] ?  new Vector3(-moveSpeed, moveSpeed, 0): new Vector3(moveSpeed, moveSpeed, 0);
-            //vLin = transform.position.x < PointForFlying[0] ? new Vector3(moveSpeed, moveSpeed, 0) : new Vector3(moveSpeed, -moveSpeed, 0);
-            transform.position += (vSin + vLin) * Time.fixedDeltaTime;
-            */
-
         }
     }
     IEnumerator ReachRoutine()
     {
-        //  Reached.gameObject.SetActive(true);
-        animator.SetTrigger("Reached");
-        yield return new WaitForSeconds(1.3f);
-        dialogManager.StartCoroutine(dialogManager.Type(sentenceIndex));
-        //Reached.gameObject.SetActive(false);
-        Destroy(this.gameObject);
+        if (!reached)
+        {
+            audioSource.Stop();
+            animator.SetTrigger("Reached");
+            audioSource.volume = 0.07f;
+            audioSource.spatialBlend = 0;
+            audioSource.PlayOneShot(butterflyClips[1]);
+            reached = true;
+            yield return new WaitForSeconds(1.4f);
+            dialogManager.StartCoroutine(dialogManager.Type());
+            Destroy(this.gameObject);
+        }
+     
     }
     private void OnDrawGizmos()
     {

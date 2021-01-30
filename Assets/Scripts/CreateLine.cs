@@ -11,7 +11,6 @@ public class CreateLine : MonoBehaviour
     private void Start()
     {
         line = GetComponent<LineRenderer>();
-
     }
     private void Update()
     {

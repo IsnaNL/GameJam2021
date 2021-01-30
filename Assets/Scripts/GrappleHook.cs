@@ -24,12 +24,16 @@ public class GrappleHook : MonoBehaviour
      ParticleSystem handParticals;
      private List<float> DistancesFromNodes = new List<float>();
      int index;
-    public Transform searchPoint;
+     public Transform searchPoint;
      public KeyCode HookKey;
-
+     public AudioClip[] audioClips = new AudioClip[2]; //0 throw //1 catch
+     public AudioSource audioSource;
+     public SpriteRenderer handSR;
+     public Animator handAnimator;
+     bool playThrowSound;
+     bool playReachSound;
     private void Start()
     {
-     
         StartCoroutine(NodesRoutine());
         handParticals = hand.GetComponent<ParticleSystem>();
     }
@@ -53,25 +57,26 @@ public class GrappleHook : MonoBehaviour
             Vector2 dir = new Vector2(correctTarget.transform.position.x - transform.position.x, correctTarget.transform.position.y - transform.position.y).normalized;
             Reached(dir);
             hooked = false;
+            playThrowSound = false;
+            playReachSound = false;
+
         }
         if (Input.GetKey(HookKey))//getkey
         {
             mouseClicked = true;
-          
+            if (!playThrowSound)
+            {
+                audioSource.PlayOneShot(audioClips[0]);
+                playThrowSound = true;
+            }
         }
         else
         {
-            // line.line.enabled = false;
-            // handrb.position = Vector2.zero;
-            //hand.transform.position = Vector2.zero;
             hand.gameObject.transform.position = transform.position;
             mouseClicked = false;
-            handParticals.gameObject.SetActive(false);
-           
+            handParticals.gameObject.SetActive(false);    
         }
-       
-
-
+        handSR.flipX = !movement.isLookingRight;
     }
     private void CheckNodes()
     {
@@ -112,7 +117,6 @@ public class GrappleHook : MonoBehaviour
             {
                 CheckNodes();
             }
-          
         }
     }
     private void Grapple()
@@ -121,8 +125,10 @@ public class GrappleHook : MonoBehaviour
         {
           if (correctTarget)
           {
-               // line.line.enabled = true;
+                // line.line.enabled = true;
+                
                 handParticals.gameObject.SetActive(true);
+             
                 movement.rb.velocity *= 0.8f;
                 handrb.velocity = Vector2.zero;
                 Vector2 HandCheck = Vector2.MoveTowards(hand.transform.position, correctTarget.transform.position, hookTravelSpeed );
@@ -130,7 +136,8 @@ public class GrappleHook : MonoBehaviour
                 float curLength = new Vector2(HandCheck.x - handrb.position.x, HandCheck.y - handrb.position.y).magnitude;
                 if (curLength < 0.004f)
                 {
-                   // movement.rb.velocity = Vector2.zero;
+                    handAnimator.SetBool("HandReached", true);
+                    // movement.rb.velocity = Vector2.zero;
                     hooked = true;
                     Vector2 Target = Vector2.MoveTowards(transform.position, correctTarget.transform.position, hookTravelSpeed);
                     movement.rb.MovePosition(Target);
@@ -147,10 +154,16 @@ public class GrappleHook : MonoBehaviour
     } 
     void Reached(Vector2 dir)
     {
+        if (!playReachSound)
+        {
+            audioSource.PlayOneShot(audioClips[1]);
+            playReachSound = true;
+        }
         GrappleReadyFromCooldown = false;
         runningCooldown = 0;
         movement.rb.velocity = new Vector2(dir.x * hookTravelForce,dir.y * hookTravelForce);
         movement.canFloat = true;
+        handAnimator.SetBool("HandReached", false);
         handParticals.gameObject.SetActive(false);
         hooked = false;
       

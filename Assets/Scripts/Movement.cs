@@ -15,13 +15,14 @@ public class Movement : MonoBehaviour
     bool isjump;
     bool isFloating;
     public bool canFloat;
-    bool isLookingRight;
+    public bool isLookingRight;
     float savedGravityScale;
     public float floatingGravityScale;
     public float MaxXMagnitude;
     public LayerMask groundLayerMask;
-
     public ParticleSystem dust;
+    public AudioSource AudioSource;
+    public AudioClip[] audioClips;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,6 +39,7 @@ public class Movement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) && !groundcheck)
         {
             canFloat = true;
+          
         }
         if (Input.GetKey(KeyCode.Space) && canFloat) {
             if(rb.velocity.y <= 0)
@@ -88,7 +90,6 @@ public class Movement : MonoBehaviour
             if (checkForGround )
             {
                 animator.SetBool("Falling", false);
-               
             }
         }
         if(rb.velocity.x >= MaxXMagnitude)
@@ -113,11 +114,18 @@ public class Movement : MonoBehaviour
         {
             if (horInput != 0)
             {
+               /* if (!playWalkSound)
+                {
+                    AudioSourceWalk.Play();
+                    playWalkSound = true;
+                }*/
                 rb.velocity += new Vector2(horInput * speedModifier, 0);
                 if(rb.velocity.x >= 5 || rb.velocity.x <= -5)
                 {
+                    
                     animator.SetBool("Run", true);
                 }
+              
             }
             else
             {
@@ -148,6 +156,7 @@ public class Movement : MonoBehaviour
     {
         if (groundcheck && isjump)
         {
+            AudioSource.PlayOneShot(audioClips[0]);
             animator.SetBool("Jump", true);
             CreateDust();
             rb.velocity = new Vector2(rb.velocity.x * 0.5f, rb.velocity.y);
@@ -162,10 +171,12 @@ public class Movement : MonoBehaviour
             if (isFloating)
             {
                 rb.gravityScale = floatingGravityScale;
+              
             }
             else
             {
                 rb.gravityScale = savedGravityScale;
+              
             }
         }
     }
