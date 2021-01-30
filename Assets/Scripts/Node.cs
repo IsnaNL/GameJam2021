@@ -20,7 +20,7 @@ public class Node : MonoBehaviour
         {
             if (gH.correctTarget.transform == this.transform )
             {
-                sr.color = Color.red;
+                sr.color = new Color(128, 0, 128);
             }
             else
             {
